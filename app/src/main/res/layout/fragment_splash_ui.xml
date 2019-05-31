@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+    
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.SplashUI">
+        
+        
+        <LinearLayout android:layout_width="@dimen/_200sdp" android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      android:layout_marginBottom="0dp" app:layout_constraintBottom_toBottomOf="parent">
+            
+            <ImageView
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:transitionName="logo_animation"
+                    android:src="@drawable/food_icon" android:id="@+id/imageView"/>
+            
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:text="@string/cookit"
+                      android:id="@+id/txt_view"
+                      android:gravity="center"
+                      android:textColor="@color/colorPrimaryDark"
+                      android:textStyle="bold"
+                      android:fontFamily="@font/custom_font"
+                      android:transitionName="txt_animation"
+                      android:layout_marginTop="@dimen/_5sdp"
+                      android:textSize="@dimen/_25ssp"/>
+        </LinearLayout>
+    
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

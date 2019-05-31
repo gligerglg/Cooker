@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/cook_navigation"
+            app:startDestination="@id/splashUI">
+
+    <fragment android:id="@+id/splashUI" android:name="apps.gliger.glg.cooker.ui.SplashUI"
+              android:label="fragment_splash_ui" tools:layout="@layout/fragment_splash_ui">
+        <action android:id="@+id/splashToMainMenu" app:destination="@id/mainMenuUI"
+                app:enterAnim="@anim/nav_default_pop_enter_anim" app:exitAnim="@anim/nav_default_pop_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:popUpTo="@+id/splashUI" app:popUpToInclusive="true" app:launchSingleTop="true"/>
+    </fragment>
+    <fragment android:id="@+id/mainMenuUI" android:name="apps.gliger.glg.cooker.MainMenuUI"
+              android:label="fragment_main_menu_ui" tools:layout="@layout/fragment_main_menu_ui">
+        <action android:id="@+id/actionMainToPeople" app:destination="@id/peopleUI"
+                app:enterAnim="@anim/nav_default_pop_enter_anim" app:exitAnim="@anim/nav_default_pop_exit_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" app:launchSingleTop="false"/>
+    </fragment>
+    <fragment android:id="@+id/peopleUI" android:name="apps.gliger.glg.cooker.PeopleUI"
+              android:label="fragment_people_ui" tools:layout="@layout/fragment_people_ui">
+        <action android:id="@+id/action_people2Error" app:destination="@id/errorUI" app:popUpTo="@+id/mainMenuUI"
+                app:enterAnim="@anim/nav_default_pop_enter_anim" app:exitAnim="@anim/nav_default_pop_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:launchSingleTop="false"/>
+        <action android:id="@+id/actionPeople2Locatioin" app:destination="@id/locationDataUI"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:popUpTo="@+id/peopleUI" app:launchSingleTop="false" app:popUpToInclusive="false"/>
+        <argument android:name="isFromMainUI" app:argType="boolean" android:defaultValue="true"/>
+    </fragment>
+    <fragment android:id="@+id/errorUI" android:name="apps.gliger.glg.cooker.ErrorUI" android:label="fragment_error_ui"
+              tools:layout="@layout/fragment_error_ui"/>
+    <fragment android:id="@+id/locationDataUI" android:name="apps.gliger.glg.cooker.ui.location_ui.LocationDataUI"
+              android:label="fragment_location_data_ui" tools:layout="@layout/fragment_location_data_ui">
+        <argument android:name="dataset_type" app:argType="integer" android:defaultValue="0"/>
+    </fragment>
+</navigation>

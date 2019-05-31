@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:bind="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+	
+	<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+	                                                   android:layout_height="match_parent">
+		
+		<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="@dimen/_200sdp"
+		                                                   android:background="@color/colorPrimaryDark"
+		                                                   android:padding="@dimen/_15sdp"
+		                                                   android:layout_height="0dp"
+		                                                   bind:layout_constraintTop_toTopOf="parent"
+		                                                   bind:layout_constraintStart_toStartOf="parent"
+		                                                   android:id="@+id/constraintLayout"
+		                                                   bind:layout_constraintBottom_toBottomOf="parent">
+			<de.hdodenhof.circleimageview.CircleImageView android:layout_width="@dimen/_120sdp"
+			                                              android:layout_height="@dimen/_120sdp"
+			                                              android:background="@color/colorPrimary"
+			                                              bind:layout_constraintTop_toTopOf="parent"
+			                                              bind:layout_constraintEnd_toEndOf="parent"
+			                                              android:layout_marginTop="@dimen/_20sdp"
+			                                              android:layout_marginEnd="8dp"
+			                                              bind:layout_constraintStart_toStartOf="parent"
+			                                              android:layout_marginStart="8dp"
+			                                              android:id="@+id/circleImageView"/>
+			
+			<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+			          android:textStyle="bold"
+			          android:fontFamily="@font/custom_font"
+			          android:gravity="center"
+			          android:textSize="@dimen/_15ssp"
+			          android:textColor="#fff"
+			          android:background="@color/colorPrimary"
+			          android:layout_marginTop="10dp"
+			          bind:layout_constraintTop_toBottomOf="@+id/circleImageView"
+			          bind:layout_constraintStart_toStartOf="parent" android:layout_marginStart="10dp"
+			          bind:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="10dp"
+			          android:id="@+id/textView"/>
+			
+			
+			<LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+			              android:orientation="horizontal"
+			              bind:layout_constraintTop_toBottomOf="@+id/textView"
+			              bind:layout_constraintStart_toStartOf="@+id/textView"
+			              android:id="@+id/location_button" android:layout_marginTop="16dp">
+				
+				<ImageButton android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp"
+				             android:background="@color/colorPrimary"
+				/>
+				
+				<TextView android:layout_width="@dimen/_100sdp" android:layout_height="match_parent"
+				          android:gravity="center"
+				          android:textColor="#fff"
+				          android:layout_marginLeft="@dimen/_3sdp"
+				          android:background="@color/colorPrimary"
+				          android:textStyle="bold"
+				/>
+			</LinearLayout>
+			
+			<LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+			              android:orientation="horizontal"
+			              bind:layout_constraintTop_toBottomOf="@+id/textView"
+			              bind:layout_constraintEnd_toEndOf="@+id/textView" android:layout_marginTop="16dp">
+				
+				<ImageButton android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp"
+				             android:background="@color/colorPrimary"/>
+				
+				<TextView android:layout_width="@dimen/_100sdp" android:layout_height="match_parent"
+				          android:gravity="center"
+				          android:textColor="#fff"
+				          android:layout_marginLeft="@dimen/_3sdp"
+				          android:background="@color/colorPrimary"
+				          android:textStyle="bold"
+				/>
+			</LinearLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
+		<ScrollView
+				android:id="@+id/profile_recycler"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				bind:layout_constraintBottom_toBottomOf="parent"
+				bind:layout_constraintEnd_toEndOf="parent"
+				bind:layout_constraintTop_toTopOf="parent"
+				bind:layout_constraintStart_toEndOf="@+id/constraintLayout">
+			<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+			                                                   android:layout_height="match_parent">
+				
+				<ImageView android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp"
+				           android:layout_marginTop="16dp"
+				           android:background="@color/disableError"
+				           bind:layout_constraintTop_toTopOf="parent" bind:layout_constraintStart_toStartOf="parent"
+				           android:layout_marginStart="16dp" android:id="@+id/imageView2"/>
+				
+				<TextView android:layout_width="@dimen/_200sdp" android:layout_height="@dimen/_20sdp"
+				          android:textColor="@color/colorPrimaryDark"
+				          android:textSize="@dimen/_12ssp" bind:layout_constraintStart_toEndOf="@+id/imageView2"
+				          bind:layout_constraintTop_toTopOf="@+id/imageView2" android:layout_marginBottom="8dp"
+				          bind:layout_constraintBottom_toBottomOf="@+id/imageView2"
+				          android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+				          android:background="@color/disableError"
+				          android:id="@+id/textView3"/>
+				
+				<LinearLayout android:layout_width="wrap_content"
+				              android:orientation="vertical"
+				              android:layout_height="wrap_content"
+				              bind:layout_constraintTop_toBottomOf="@+id/imageView2"
+				              bind:layout_constraintStart_toStartOf="@+id/textView3"
+				              android:id="@+id/linearLayout2">
+					<TextView
+							android:layout_width="@dimen/_200sdp" android:layout_marginTop="@dimen/_3sdp"
+							android:layout_height="@dimen/_20sdp"
+							android:background="@color/disableError"/>
+					<TextView android:layout_width="@dimen/_200sdp" android:layout_marginTop="@dimen/_3sdp"
+					          android:layout_height="@dimen/_20sdp"
+					          android:background="@color/disableError"
+					/>
+					<TextView android:layout_width="@dimen/_200sdp" android:layout_marginTop="@dimen/_3sdp"
+					          android:layout_height="@dimen/_20sdp"
+					          android:background="@color/disableError"
+					/>
+				</LinearLayout>
+				
+				<ImageView android:layout_width="@dimen/_30sdp" android:layout_height="@dimen/_30sdp"
+				           android:background="@color/disableError"
+				           bind:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+				           bind:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
+				           android:layout_marginStart="16dp" android:id="@+id/imageView3"/>
+				
+				<TextView android:layout_width="@dimen/_200sdp" android:layout_height="@dimen/_20sdp"
+				          android:background="@color/disableError"
+				          android:textColor="@color/colorPrimaryDark"
+				          android:textSize="@dimen/_12ssp" bind:layout_constraintTop_toTopOf="@+id/imageView3"
+				          bind:layout_constraintStart_toEndOf="@+id/imageView3" android:layout_marginStart="8dp"
+				          android:layout_marginBottom="8dp"
+				          bind:layout_constraintBottom_toBottomOf="@+id/imageView3" android:layout_marginTop="8dp"
+				          android:id="@+id/textView4"/>
+				
+				<LinearLayout android:layout_width="wrap_content"
+				              android:orientation="vertical"
+				              android:layout_height="wrap_content"
+				              bind:layout_constraintTop_toBottomOf="@+id/imageView3"
+				              bind:layout_constraintStart_toStartOf="@+id/textView4"
+				              android:layout_marginTop="8dp">
+					<TextView android:layout_width="@dimen/_200sdp" android:layout_height="@dimen/_20sdp"
+					
+					          android:background="@color/disableError"/>
+					<TextView android:layout_width="@dimen/_200sdp" android:layout_height="@dimen/_20sdp"
+					          android:background="@color/disableError"
+					          android:layout_marginTop="@dimen/_3sdp"/>
+					<TextView android:layout_width="@dimen/_200sdp" android:layout_marginTop="@dimen/_3sdp"
+					          android:layout_height="@dimen/_20sdp"
+					          android:background="@color/disableError"/>
+				</LinearLayout>
+			</androidx.constraintlayout.widget.ConstraintLayout>
+		</ScrollView>
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+	
+</LinearLayout>
