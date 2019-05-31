@@ -1,25 +1,38 @@
 package apps.gliger.glg.cooker
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
 import android.view.Window
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import apps.gliger.glg.cooker.databinding.ActivityMainBinding
+import apps.gliger.glg.cooker.repository.Repository
+import apps.gliger.glg.cooker.service.NetworkReceiver
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(),NetworkReceiver.ConnectivityChangeListener {
 
     lateinit var mainBinding: ActivityMainBinding
     lateinit var navController: NavController
 
+    override fun onNetConnectionChanged(isConnected: Boolean) {
+        val repository = Repository.getInstance(applicationContext)
+        repository.setNetworkStatus(isConnected)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
 
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        registerReceiver(NetworkReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
 
+    override fun onResume() {
+        super.onResume()
+        NetworkReceiver.connectivityChangeListener =  this
     }
 }

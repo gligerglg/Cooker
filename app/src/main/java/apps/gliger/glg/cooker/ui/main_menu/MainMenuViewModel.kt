@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainMenuViewModel(application: Application) : AndroidViewModel(application) {
-    var repository: Repository = Repository(application)
+    var repository: Repository = Repository.getInstance(application)
     private lateinit var _eventList: LiveData<List<Event>>
     var ioScope = CoroutineScope(Dispatchers.IO)
 

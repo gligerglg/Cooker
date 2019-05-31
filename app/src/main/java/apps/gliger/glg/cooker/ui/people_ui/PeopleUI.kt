@@ -39,6 +39,7 @@ class PeopleUI : Fragment() {
             uiBinding.btnRefresh.visibility=View.GONE
 
             CoroutineScope(Dispatchers.Main).launch {
+
                 val response = viewModel.getPeopleList()
                 if(response!=null)
                     viewModel.savePeopleData(response.results[0])

@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LocationUIViewModel(application: Application):AndroidViewModel(application) {
-    val repository = Repository(application)
+    val repository = Repository.getInstance(application)
     private lateinit var _person : LiveData<Person>
 
     init {

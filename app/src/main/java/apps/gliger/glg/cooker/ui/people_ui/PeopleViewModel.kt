@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class PeopleViewModel(application: Application): AndroidViewModel(application) {
 
     private val http = RetrofitFactry.getService()
-    private val repository = Repository(application)
+    private val repository = Repository.getInstance(application)
 
     suspend fun getPeopleList():PeopleResponse?{
         try {

@@ -19,10 +19,10 @@
     </fragment>
     <fragment android:id="@+id/peopleUI" android:name="apps.gliger.glg.cooker.PeopleUI"
               android:label="fragment_people_ui" tools:layout="@layout/fragment_people_ui">
-        <action android:id="@+id/action_people2Error" app:destination="@id/errorUI" app:popUpTo="@+id/mainMenuUI"
+        <action android:id="@+id/action_people2Error" app:destination="@id/errorUI" app:popUpTo="@+id/peopleUI"
                 app:enterAnim="@anim/nav_default_pop_enter_anim" app:exitAnim="@anim/nav_default_pop_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
-                app:launchSingleTop="false"/>
+                app:launchSingleTop="false" app:popUpToInclusive="false"/>
         <action android:id="@+id/actionPeople2Locatioin" app:destination="@id/locationDataUI"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
