@@ -10,6 +10,7 @@
                 app:enterAnim="@anim/nav_default_pop_enter_anim" app:exitAnim="@anim/nav_default_pop_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:popUpTo="@+id/splashUI" app:popUpToInclusive="true" app:launchSingleTop="true"/>
+        <action android:id="@+id/action_splashUI_to_mainMenuUI" app:destination="@id/mainMenuUI"/>
     </fragment>
     <fragment android:id="@+id/mainMenuUI" android:name="apps.gliger.glg.cooker.MainMenuUI"
               android:label="fragment_main_menu_ui" tools:layout="@layout/fragment_main_menu_ui">
