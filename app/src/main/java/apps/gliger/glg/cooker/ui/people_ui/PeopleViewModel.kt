@@ -13,38 +13,8 @@ import apps.gliger.glg.cooker.repository.RepositoryImpl
 
 class PeopleViewModel(private val repository: Repository): ViewModel() {
 
-    private val http = RetrofitFactry.getService()
-
-    suspend fun getPeopleList():PeopleResponse?{
-        try {
-            return http.getPeople().await()
-        }catch (e:Exception){
-        }
-        return null
-    }
-
-    suspend fun savePeopleData(result: Result):Person{
-        val person = setUpPersonData(result)
-        repository.addPerson(person)
-        return person
-    }
-
-    fun setUpPersonData(result: Result):Person{
-        return Person(
-            0,
-            result.name.first,
-            result.name.last,
-            result.name.title,
-            result.gender,
-            result.location,
-            result.email,
-            result.dob.date,
-            result.dob.age,
-            result.login,
-            result.phone,
-            result.cell,
-            result.picture.large
-        )
+    fun getPeopleFromCloud(){
+        repository.getPeopleFromCloud()
     }
 
     fun getPerson():LiveData<Person>{

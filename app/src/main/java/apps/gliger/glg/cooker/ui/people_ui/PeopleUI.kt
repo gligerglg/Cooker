@@ -16,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.sharedViewModel
+import java.lang.Exception
 
 class PeopleUI : Fragment() {
 
@@ -39,12 +40,10 @@ class PeopleUI : Fragment() {
             uiBinding.profileActiveView.visibility = View.GONE
             uiBinding.btnRefresh.visibility=View.GONE
 
-            CoroutineScope(Dispatchers.Main).launch {
-
-                val response = viewModel.getPeopleList()
-                if(response!=null)
-                    viewModel.savePeopleData(response.results[0])
-                else Navigation.findNavController(uiBinding.root).navigate(PeopleUIDirections.actionPeople2Error())
+            try {
+                viewModel.getPeopleFromCloud()
+            }catch (e:Exception){
+                Navigation.findNavController(uiBinding.root).navigate(PeopleUIDirections.actionPeople2Error())
             }
         }
 

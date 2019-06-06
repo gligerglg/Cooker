@@ -10,20 +10,22 @@ import androidx.navigation.NavController
 import apps.gliger.glg.cooker.databinding.ActivityMainBinding
 import apps.gliger.glg.cooker.repository.RepositoryImpl
 import apps.gliger.glg.cooker.service.NetworkReceiver
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(),NetworkReceiver.ConnectivityChangeListener {
 
     lateinit var mainBinding: ActivityMainBinding
     lateinit var navController: NavController
+    val viewModel:MainActivityViewModel by viewModel()
 
     override fun onNetConnectionChanged(isConnected: Boolean) {
-        val repository = RepositoryImpl(applicationContext)
-        repository.setNetworkStatus(isConnected)
+        viewModel.repository.setNetworkStatus(isConnected)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         super.onCreate(savedInstanceState)
+
 
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         registerReceiver(NetworkReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))

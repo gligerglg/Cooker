@@ -1,8 +1,13 @@
 package apps.gliger.glg.cooker
 
 import android.app.Application
+import apps.gliger.glg.cooker.data.FoodDatabase
+import apps.gliger.glg.cooker.data.FoodDatabaseImpl
+import apps.gliger.glg.cooker.network.NetworkService
+import apps.gliger.glg.cooker.network.RetrofitFactry
 import apps.gliger.glg.cooker.repository.Repository
 import apps.gliger.glg.cooker.repository.RepositoryImpl
+import apps.gliger.glg.cooker.ui.error_ui.ErrorUIViewModel
 import apps.gliger.glg.cooker.ui.location_ui.LocationUIViewModel
 import apps.gliger.glg.cooker.ui.main_menu.MainMenuViewModel
 import apps.gliger.glg.cooker.ui.people_ui.PeopleViewModel
@@ -20,27 +25,34 @@ class CookerApplication: Application() {
         startKoin {
             androidLogger()
             androidContext(this@CookerApplication)
-            modules(listOf(appModule,locationVM,peopleVM))
+            modules(appModule)
         }
     }
 
     private val appModule = module {
-        single<Repository>{RepositoryImpl(get())}
+        single<NetworkService> { RetrofitFactry.getService() }
+        single<FoodDatabase> { FoodDatabaseImpl.get(get()) }
+        single<Repository>{RepositoryImpl(get(),get())}
 
         viewModel {
             MainMenuViewModel(get())
         }
-    }
 
-    private val locationVM = module {
         viewModel {
             LocationUIViewModel(get())
         }
-    }
 
-    private val peopleVM = module {
         viewModel {
             PeopleViewModel(get())
         }
+
+        viewModel {
+            MainActivityViewModel(get())
+        }
+
+        viewModel {
+            ErrorUIViewModel(get())
+        }
     }
+
 }

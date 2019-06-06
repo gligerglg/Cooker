@@ -18,6 +18,4 @@ interface EventDao {
     @Query("Select * from eventTbl")
     fun getAllEvents():LiveData<List<Event>>
 
-    @Query("Select * from eventTbl where eventId=:id")
-    fun getEventById(id:Long):LiveData<Event>
 }
