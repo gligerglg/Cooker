@@ -2,17 +2,14 @@ package apps.gliger.glg.cooker
 
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import apps.gliger.glg.cooker.databinding.EventInputBinding
@@ -21,9 +18,7 @@ import apps.gliger.glg.cooker.model.Event
 import apps.gliger.glg.cooker.ui.main_menu.EventItemListener
 import apps.gliger.glg.cooker.ui.main_menu.EventListAdapter
 import apps.gliger.glg.cooker.ui.main_menu.MainMenuViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,7 +41,7 @@ class MainMenuUI : Fragment() {
         val binding = FragmentMainMenuUiBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val viewModel = ViewModelProviders.of(this).get(MainMenuViewModel::class.java)
+        val viewModel : MainMenuViewModel by sharedViewModel()
 
         val adapter = EventListAdapter(EventItemListener {event:Event->
             performEventAdd(event, inflater, viewModel)
@@ -56,7 +51,7 @@ class MainMenuUI : Fragment() {
         binding.mainMenuRecycler.adapter = adapter
         binding.button.setOnClickListener { Navigation.findNavController(binding.root).navigate(MainMenuUIDirections.actionMainToPeople(true)) }
 
-        viewModel.repository.getAllEvents().observe(this, Observer {
+        viewModel.eventList.observe(this, Observer {
             val eventlist = arrayListOf<Event>()
             eventlist.addAll(it)
             eventlist.add(Event(-1,"NewItem","New","NULL"))

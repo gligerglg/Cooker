@@ -15,6 +15,7 @@ import apps.gliger.glg.cooker.ui.people_ui.PeopleViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class PeopleUI : Fragment() {
 
@@ -25,7 +26,7 @@ class PeopleUI : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val uiBinding = FragmentPeopleUiBinding.inflate(inflater)
-        val viewModel = ViewModelProviders.of(this).get(PeopleViewModel::class.java)
+        val viewModel :PeopleViewModel by sharedViewModel()
         isFromMainUI = arguments?.let { PeopleUIArgs.fromBundle(it).isFromMainUI }!!
 
         uiBinding.locationButton.setOnClickListener { isFromMainUI=false

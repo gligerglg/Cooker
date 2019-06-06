@@ -91,4 +91,8 @@ dependencies {
 
     //Gson LocationConverter Factory
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    //Koin DI
+    implementation "org.koin:koin-android:2.0.1"
+    implementation "org.koin:koin-android-viewmodel:2.0.1"
 }

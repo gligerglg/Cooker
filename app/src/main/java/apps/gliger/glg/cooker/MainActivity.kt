@@ -4,13 +4,11 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
-import android.view.Window
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import apps.gliger.glg.cooker.databinding.ActivityMainBinding
-import apps.gliger.glg.cooker.repository.Repository
+import apps.gliger.glg.cooker.repository.RepositoryImpl
 import apps.gliger.glg.cooker.service.NetworkReceiver
 
 class MainActivity : AppCompatActivity(),NetworkReceiver.ConnectivityChangeListener {
@@ -19,7 +17,7 @@ class MainActivity : AppCompatActivity(),NetworkReceiver.ConnectivityChangeListe
     lateinit var navController: NavController
 
     override fun onNetConnectionChanged(isConnected: Boolean) {
-        val repository = Repository.getInstance(applicationContext)
+        val repository = RepositoryImpl(applicationContext)
         repository.setNetworkStatus(isConnected)
     }
 
@@ -35,4 +33,5 @@ class MainActivity : AppCompatActivity(),NetworkReceiver.ConnectivityChangeListe
         super.onResume()
         NetworkReceiver.connectivityChangeListener =  this
     }
+
 }

@@ -3,21 +3,17 @@ package apps.gliger.glg.cooker.ui.people_ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
-import apps.gliger.glg.cooker.data.FoodDatabase
+import androidx.lifecycle.ViewModel
 import apps.gliger.glg.cooker.model.PeopleResponse
 import apps.gliger.glg.cooker.model.Person
 import apps.gliger.glg.cooker.model.Result
 import apps.gliger.glg.cooker.network.RetrofitFactry
 import apps.gliger.glg.cooker.repository.Repository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import apps.gliger.glg.cooker.repository.RepositoryImpl
 
-class PeopleViewModel(application: Application): AndroidViewModel(application) {
+class PeopleViewModel(private val repository: Repository): ViewModel() {
 
     private val http = RetrofitFactry.getService()
-    private val repository = Repository.getInstance(application)
 
     suspend fun getPeopleList():PeopleResponse?{
         try {
